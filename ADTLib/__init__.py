@@ -10,7 +10,7 @@ Created on Fri May 26 15:10:50 2017
 from . import utils
 import os
 
-def ADT(filenames,text='yes',tab='yes',save_dir=None,output_act='no'):
+def ADT(filenames,text='no',tab='no',save_dir=None,output_act='no'):
     location=utils.location_extract()
     Onsets=[]
     if output_act=='yes':
