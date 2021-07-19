@@ -12,8 +12,9 @@ import numpy as np
 import subprocess
 from fpdf import FPDF
 import ADTLib
-import tensorflow as tf
-from tensorflow.contrib import rnn
+import tensorflow.compat.v1 as tf
+from tensorflow.compat.v1.nn import rnn_cell as rnn
+tf.disable_v2_behavior()
 
 def spec(file):
     return madmom.audio.spectrogram.Spectrogram(file, frame_size=2048, hop_size=512, fft_size=2048,num_channels=1)
@@ -41,7 +42,7 @@ def meanPPmm(Track,Lambda,mi,ma,hop=512,fs=44100,dif=0.05):
     for i in range(1,len(onsets)):
         if abs(onsets[i]-onsets[i-1])<dif:
             ind=np.argmax(values[i-1:i+1])
-            np.delete(onsets,onsets[i-1+ind])
+            np.delete(onsets,i-1+ind)
   
     return onsets
 
